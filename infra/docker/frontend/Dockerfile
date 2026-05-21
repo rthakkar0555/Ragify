@@ -14,7 +14,10 @@ ENV NODE_ENV=production
 
 COPY --from=base /app/.next/standalone ./
 COPY --from=base /app/.next/static ./.next/static
-COPY --from=base /app/public ./public
+
+# Copy public directory if it exists (optional for Next.js apps)
+RUN mkdir -p ./public
+COPY --from=base /app/public ./public || true
 
 EXPOSE 3000
 

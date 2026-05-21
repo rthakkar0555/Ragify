@@ -4,7 +4,6 @@ Reranker implementations.
 All rerankers implement BaseReranker from shared.interfaces.reranker.
 """
 
-
 from shared.interfaces.reranker import BaseReranker
 
 

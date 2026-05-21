@@ -13,6 +13,7 @@ T = TypeVar("T")
 
 class PaginationParams(BaseModel):
     """Query parameters for paginated endpoints."""
+
     page: int = Field(default=1, ge=1)
     page_size: int = Field(default=DEFAULT_PAGE_SIZE, ge=1, le=MAX_PAGE_SIZE)
 

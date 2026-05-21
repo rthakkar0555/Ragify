@@ -5,7 +5,6 @@ This module contains pure orchestration logic, not HTTP routes.
 """
 
 
-
 async def hybrid_retrieve(
     query: str,
     collection: str,

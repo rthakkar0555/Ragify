@@ -2,7 +2,6 @@
 Chunking service — orchestrates text splitting strategies.
 """
 
-
 from core.logging import get_logger
 
 logger = get_logger(__name__)

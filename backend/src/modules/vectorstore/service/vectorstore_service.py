@@ -2,7 +2,6 @@
 Vector store service — abstract interface to vector databases.
 """
 
-
 from core.logging import get_logger
 
 logger = get_logger(__name__)

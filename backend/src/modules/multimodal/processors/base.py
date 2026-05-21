@@ -7,7 +7,6 @@ modality (PDF, audio, video, image, website) into text + metadata.
 All processors implement BaseProcessor from shared.interfaces.processor.
 """
 
-
 from shared.interfaces.processor import BaseProcessor
 
 

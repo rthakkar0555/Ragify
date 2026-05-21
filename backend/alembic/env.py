@@ -2,7 +2,6 @@
 Alembic configuration for database migrations.
 """
 
-
 # Import all models for auto-generation
 from shared.models.base import Base
 

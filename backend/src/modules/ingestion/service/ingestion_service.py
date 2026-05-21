@@ -59,9 +59,7 @@ class IngestionService:
         """Retrieve document metadata by ID."""
         return await self._repository.get_by_id(document_id, tenant_id)
 
-    async def list_documents(
-        self, tenant_id: str, page: int = 1, page_size: int = 20
-    ) -> dict:
+    async def list_documents(self, tenant_id: str, page: int = 1, page_size: int = 20) -> dict:
         """List documents for a tenant with pagination."""
         return await self._repository.list_paginated(tenant_id, page, page_size)
 

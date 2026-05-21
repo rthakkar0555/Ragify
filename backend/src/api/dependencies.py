@@ -16,6 +16,7 @@ security = HTTPBearer()
 
 # --- Auth Dependencies ---
 
+
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Security(security),
 ) -> dict:
@@ -47,6 +48,7 @@ async def get_current_active_user(
 
 
 # --- Database Dependencies ---
+
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Provide an async database session per request."""

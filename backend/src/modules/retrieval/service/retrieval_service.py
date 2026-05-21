@@ -2,7 +2,6 @@
 Retrieval service — orchestrates the complete retrieval pipeline.
 """
 
-
 from core.logging import get_logger
 
 logger = get_logger(__name__)

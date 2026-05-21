@@ -4,7 +4,6 @@ Chunking strategy implementations.
 All strategies implement BaseChunkingStrategy from shared.interfaces.chunker.
 """
 
-
 from shared.interfaces.chunker import BaseChunkingStrategy
 
 

@@ -2,7 +2,6 @@
 Embedding service — generates vector embeddings via pluggable providers.
 """
 
-
 from core.logging import get_logger
 
 logger = get_logger(__name__)

@@ -11,6 +11,7 @@ T = TypeVar("T")
 
 class ResponseSchema(BaseModel, Generic[T]):
     """Standard API response envelope."""
+
     success: bool = True
     data: T | None = None
     message: str | None = None
@@ -18,6 +19,7 @@ class ResponseSchema(BaseModel, Generic[T]):
 
 class PaginatedResponse(BaseModel, Generic[T]):
     """Paginated API response."""
+
     items: list[T]
     total: int
     page: int
@@ -27,6 +29,7 @@ class PaginatedResponse(BaseModel, Generic[T]):
 
 class ErrorResponse(BaseModel):
     """Standard error response."""
+
     success: bool = False
     error: str
     detail: Any | None = None

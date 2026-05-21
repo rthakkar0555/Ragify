@@ -12,11 +12,13 @@ from sqlalchemy.orm import DeclarativeBase
 
 class Base(DeclarativeBase):
     """Base model class for all domain entities."""
+
     pass
 
 
 class TimestampMixin:
     """Mixin providing created_at and updated_at timestamps."""
+
     created_at = Column(
         DateTime(timezone=True),
         default=lambda: datetime.now(UTC),
@@ -32,6 +34,7 @@ class TimestampMixin:
 
 class UUIDMixin:
     """Mixin providing a UUID primary key."""
+
     id = Column(
         UUID(as_uuid=True),
         primary_key=True,

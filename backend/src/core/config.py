@@ -5,7 +5,6 @@ Uses Pydantic Settings for type-safe environment variable parsing
 with support for .env files and environment-specific overrides.
 """
 
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

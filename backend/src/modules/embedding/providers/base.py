@@ -4,7 +4,6 @@ Embedding provider implementations.
 All providers implement BaseEmbeddingProvider from shared.interfaces.embedding.
 """
 
-
 from shared.interfaces.embedding import BaseEmbeddingProvider
 
 

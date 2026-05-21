@@ -4,7 +4,6 @@ Vector store adapter implementations.
 All adapters implement BaseVectorStoreAdapter from shared.interfaces.vectorstore.
 """
 
-
 from shared.interfaces.vectorstore import BaseVectorStoreAdapter
 
 
@@ -22,15 +21,21 @@ class QdrantAdapter(BaseVectorStoreAdapter):
         return True
 
     async def upsert(
-        self, collection: str, ids: list[str],
-        vectors: list[list[float]], payloads: list[dict] | None = None,
+        self,
+        collection: str,
+        ids: list[str],
+        vectors: list[list[float]],
+        payloads: list[dict] | None = None,
     ) -> bool:
         # TODO: Implement Qdrant upsert
         return True
 
     async def search(
-        self, collection: str, query_vector: list[float],
-        top_k: int = 10, filters: dict | None = None,
+        self,
+        collection: str,
+        query_vector: list[float],
+        top_k: int = 10,
+        filters: dict | None = None,
     ) -> list[dict]:
         # TODO: Implement Qdrant search
         return []
@@ -47,14 +52,20 @@ class PineconeAdapter(BaseVectorStoreAdapter):
         raise NotImplementedError
 
     async def upsert(
-        self, collection: str, ids: list[str],
-        vectors: list[list[float]], payloads: list[dict] | None = None,
+        self,
+        collection: str,
+        ids: list[str],
+        vectors: list[list[float]],
+        payloads: list[dict] | None = None,
     ) -> bool:
         raise NotImplementedError
 
     async def search(
-        self, collection: str, query_vector: list[float],
-        top_k: int = 10, filters: dict | None = None,
+        self,
+        collection: str,
+        query_vector: list[float],
+        top_k: int = 10,
+        filters: dict | None = None,
     ) -> list[dict]:
         raise NotImplementedError
 

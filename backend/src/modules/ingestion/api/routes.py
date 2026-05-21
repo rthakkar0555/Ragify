@@ -2,7 +2,6 @@
 Ingestion API routes.
 """
 
-
 from fastapi import APIRouter, File, Form, UploadFile
 
 router = APIRouter()

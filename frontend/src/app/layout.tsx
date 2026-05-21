@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "RAGify — RAG-as-a-Service Platform",
+  title: "RAGify | Illuminated Intelligence",
   description:
-    "Modular retrieval infrastructure for AI applications. Ingest, chunk, embed, and retrieve across any modality.",
+    "POST your data. GET intelligent answers. RAGify is a modular RAG-as-a-Service platform that handles retrieval infrastructure for AI applications.",
 };
 
 export default function RootLayout({
@@ -13,10 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
-        {children}
-      </body>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="min-h-screen font-geist antialiased">{children}</body>
     </html>
   );
 }

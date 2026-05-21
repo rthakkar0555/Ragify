@@ -1,7 +1,14 @@
-.PHONY: help dev backend frontend workers test lint docker-up docker-down migrate
+.PHONY: help dev backend frontend workers worker-beat \
+test test-unit test-integration \
+lint format frontend-lint frontend-build \
+docker-test check \
+docker-up docker-down docker-logs docker-clean \
+migrate migrate-create migrate-rollback \
+seed clean
 
+# ─── Help ─────────────────────────────────────────────
 help: ## Show this help message
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}'
 
 # ─── Development ──────────────────────────────────────
 dev: ## Start infra services for local development
@@ -22,7 +29,7 @@ worker-beat: ## Run Celery Beat scheduler
 
 # ─── Testing ──────────────────────────────────────────
 test: ## Run all backend tests
-	cd backend && pytest src/tests/ -v --cov=src
+	cd backend && pytest src/tests/ -v --cov=src --cov-report=term-missing
 
 test-unit: ## Run unit tests only
 	cd backend && pytest src/tests/unit/ -v
@@ -30,24 +37,27 @@ test-unit: ## Run unit tests only
 test-integration: ## Run integration tests
 	cd backend && pytest src/tests/integration/ -v
 
-# ─── Linting ──────────────────────────────────────────
+# ─── Backend Linting & Formatting ─────────────────────
 lint: ## Lint backend code
-	cd backend && ruff check src/ && ruff format --check src/
+	cd backend && ruff check src/
 
 format: ## Format backend code
 	cd backend && ruff format src/
 
-# ─── Database ─────────────────────────────────────────
-migrate: ## Run database migrations
-	cd backend && alembic upgrade head
+format-check: ## Check backend formatting
+	cd backend && ruff format --check src/
 
-migrate-create: ## Create a new migration (usage: make migrate-create MSG="description")
-	cd backend && alembic revision --autogenerate -m "$(MSG)"
+# ─── Frontend ─────────────────────────────────────────
+frontend-lint: ## Run frontend lint
+	cd frontend && npm run lint
 
-migrate-rollback: ## Rollback last migration
-	cd backend && alembic downgrade -1
+frontend-build: ## Run frontend production build
+	cd frontend && npm run build
 
 # ─── Docker ───────────────────────────────────────────
+docker-test: ## Test frontend Docker build
+	docker build -f infra/docker/frontend/Dockerfile .
+
 docker-up: ## Start all services with Docker
 	docker compose up -d --build
 
@@ -60,12 +70,33 @@ docker-logs: ## View Docker logs
 docker-clean: ## Remove all Docker volumes and images
 	docker compose down -v --rmi all
 
-# ─── Utilities ────────────────────────────────────────
+# ─── Database ─────────────────────────────────────────
+migrate: ## Run database migrations
+	cd backend && alembic upgrade head
+
+migrate-create: ## Create a new migration
+	cd backend && alembic revision --autogenerate -m "$(MSG)"
+
+migrate-rollback: ## Rollback last migration
+	cd backend && alembic downgrade -1
+
 seed: ## Seed database with sample data
 	python scripts/seed/seed_data.py
 
-clean: ## Clean build artifacts
+# ─── CI / Pre-push Checks ─────────────────────────────
+check: ## Run all CI checks locally
+	make lint
+	make format-check
+	make test
+	make frontend-lint
+	make frontend-build
+	make docker-test
+	@echo "All checks passed successfully."
+
+# ─── Utilities ────────────────────────────────────────
+clean: ## Clean build artifacts and caches
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
 	find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
 	find . -type d -name .mypy_cache -exec rm -rf {} + 2>/dev/null || true
 	find . -type d -name .ruff_cache -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name node_modules -prune -o -type f -name "*.pyc" -exec rm -f {} + 2>/dev/null || true

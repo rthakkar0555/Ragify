@@ -2,7 +2,7 @@
 RAGify Python SDK Client.
 """
 
-from typing import Dict, List, Optional
+from typing import Dict, List
 import httpx
 
 

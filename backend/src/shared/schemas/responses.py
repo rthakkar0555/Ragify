@@ -2,7 +2,8 @@
 Standard API response schemas shared across all endpoints.
 """
 
-from typing import Any, Generic, List, Optional, TypeVar
+from typing import Any, Generic, TypeVar
+
 from pydantic import BaseModel
 
 T = TypeVar("T")
@@ -11,13 +12,13 @@ T = TypeVar("T")
 class ResponseSchema(BaseModel, Generic[T]):
     """Standard API response envelope."""
     success: bool = True
-    data: Optional[T] = None
-    message: Optional[str] = None
+    data: T | None = None
+    message: str | None = None
 
 
 class PaginatedResponse(BaseModel, Generic[T]):
     """Paginated API response."""
-    items: List[T]
+    items: list[T]
     total: int
     page: int
     page_size: int
@@ -28,5 +29,5 @@ class ErrorResponse(BaseModel):
     """Standard error response."""
     success: bool = False
     error: str
-    detail: Optional[Any] = None
-    error_code: Optional[str] = None
+    detail: Any | None = None
+    error_code: str | None = None

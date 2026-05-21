@@ -2,7 +2,7 @@
 Chunking service — orchestrates text splitting strategies.
 """
 
-from typing import List, Optional
+
 from core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -20,8 +20,8 @@ class ChunkingService:
         strategy: str = "recursive",
         chunk_size: int = 512,
         chunk_overlap: int = 50,
-        metadata: Optional[dict] = None,
-    ) -> List[dict]:
+        metadata: dict | None = None,
+    ) -> list[dict]:
         """Split document content into chunks using the specified strategy."""
         logger.info("chunking_document", strategy=strategy, chunk_size=chunk_size)
         # TODO: Delegate to strategy implementation

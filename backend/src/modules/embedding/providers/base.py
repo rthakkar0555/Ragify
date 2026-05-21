@@ -4,7 +4,7 @@ Embedding provider implementations.
 All providers implement BaseEmbeddingProvider from shared.interfaces.embedding.
 """
 
-from typing import List
+
 from shared.interfaces.embedding import BaseEmbeddingProvider
 
 
@@ -15,7 +15,7 @@ class OpenAIEmbeddingProvider(BaseEmbeddingProvider):
         self._model = model
         self._api_key = api_key
 
-    async def embed(self, texts: List[str]) -> List[List[float]]:
+    async def embed(self, texts: list[str]) -> list[list[float]]:
         # TODO: Implement OpenAI API call with batching
         return []
 
@@ -32,7 +32,7 @@ class OpenAIEmbeddingProvider(BaseEmbeddingProvider):
 class CohereEmbeddingProvider(BaseEmbeddingProvider):
     """Cohere embedding provider."""
 
-    async def embed(self, texts: List[str]) -> List[List[float]]:
+    async def embed(self, texts: list[str]) -> list[list[float]]:
         # TODO: Implement Cohere API call
         return []
 
@@ -44,7 +44,7 @@ class CohereEmbeddingProvider(BaseEmbeddingProvider):
 class LocalEmbeddingProvider(BaseEmbeddingProvider):
     """Local model embedding provider (e.g., sentence-transformers)."""
 
-    async def embed(self, texts: List[str]) -> List[List[float]]:
+    async def embed(self, texts: list[str]) -> list[list[float]]:
         # TODO: Implement local model inference
         return []
 

@@ -2,8 +2,9 @@
 Auth domain models.
 """
 
-from sqlalchemy import Column, String, Boolean, DateTime
-from shared.models.base import Base, UUIDMixin, TimestampMixin
+from sqlalchemy import Boolean, Column, DateTime, String
+
+from shared.models.base import Base, TimestampMixin, UUIDMixin
 
 
 class User(Base, UUIDMixin, TimestampMixin):

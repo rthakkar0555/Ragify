@@ -8,9 +8,9 @@ middleware, event handlers, and exception handlers.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from api.router import router
 from core.config import settings
 from core.lifespan import lifespan
-from api.router import router
 
 
 def create_app() -> FastAPI:

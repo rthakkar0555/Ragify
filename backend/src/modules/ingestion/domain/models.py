@@ -2,9 +2,10 @@
 Ingestion domain models.
 """
 
-from sqlalchemy import Column, String, Enum, Integer, JSON, Text
-from shared.models.base import Base, UUIDMixin, TimestampMixin
+from sqlalchemy import JSON, Column, Enum, Integer, String, Text
+
 from shared.enums import DocumentStatus, DocumentType
+from shared.models.base import Base, TimestampMixin, UUIDMixin
 
 
 class Document(Base, UUIDMixin, TimestampMixin):

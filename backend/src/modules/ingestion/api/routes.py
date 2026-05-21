@@ -2,8 +2,8 @@
 Ingestion API routes.
 """
 
-from fastapi import APIRouter, Depends, UploadFile, File, Form
-from typing import Optional
+
+from fastapi import APIRouter, File, Form, UploadFile
 
 router = APIRouter()
 
@@ -11,7 +11,7 @@ router = APIRouter()
 @router.post("/documents")
 async def upload_document(
     file: UploadFile = File(...),
-    collection_id: Optional[str] = Form(None),
+    collection_id: str | None = Form(None),
     # current_user: dict = Depends(get_current_user),
 ):
     """Upload a document for ingestion."""

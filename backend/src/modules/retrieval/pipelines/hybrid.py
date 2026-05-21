@@ -4,7 +4,6 @@ Hybrid retrieval pipeline — combines vector search with keyword/BM25 search.
 This module contains pure orchestration logic, not HTTP routes.
 """
 
-from typing import Dict, List, Optional
 
 
 async def hybrid_retrieve(
@@ -15,8 +14,8 @@ async def hybrid_retrieve(
     top_k: int = 10,
     vector_weight: float = 0.7,
     keyword_weight: float = 0.3,
-    filters: Optional[Dict] = None,
-) -> List[Dict]:
+    filters: dict | None = None,
+) -> list[dict]:
     """
     Execute hybrid retrieval: vector search + keyword search, then merge.
     

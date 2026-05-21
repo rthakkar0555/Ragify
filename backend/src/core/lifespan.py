@@ -6,6 +6,7 @@ cache connections, and other infrastructure resources.
 """
 
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 

@@ -2,11 +2,10 @@
 Ingestion service — orchestrates document intake pipeline.
 """
 
-from typing import Optional
 from uuid import UUID
 
 from core.logging import get_logger
-from shared.events import publish, DOCUMENT_INGESTED
+from shared.events import DOCUMENT_INGESTED, publish
 
 logger = get_logger(__name__)
 
@@ -25,8 +24,8 @@ class IngestionService:
         filename: str,
         document_type: str,
         tenant_id: str,
-        collection_id: Optional[str] = None,
-        metadata: Optional[dict] = None,
+        collection_id: str | None = None,
+        metadata: dict | None = None,
     ) -> dict:
         """Ingest a new document into the system."""
         logger.info("ingesting_document", filename=filename, tenant_id=tenant_id)

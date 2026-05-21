@@ -2,9 +2,10 @@
 Chunk domain models.
 """
 
-from sqlalchemy import Column, String, Integer, Text, ForeignKey, JSON
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String, Text
 from sqlalchemy.dialects.postgresql import UUID
-from shared.models.base import Base, UUIDMixin, TimestampMixin
+
+from shared.models.base import Base, TimestampMixin, UUIDMixin
 
 
 class Chunk(Base, UUIDMixin, TimestampMixin):

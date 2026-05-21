@@ -2,7 +2,7 @@
 Retrieval service — orchestrates the complete retrieval pipeline.
 """
 
-from typing import Dict, List, Optional
+
 from core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -21,10 +21,10 @@ class RetrievalService:
         query: str,
         collection: str,
         top_k: int = 10,
-        filters: Optional[Dict] = None,
+        filters: dict | None = None,
         rerank: bool = False,
         hybrid: bool = False,
-    ) -> List[Dict]:
+    ) -> list[dict]:
         """Execute the retrieval pipeline: embed → search → (rerank)."""
         logger.info("retrieving", query_length=len(query), collection=collection)
 

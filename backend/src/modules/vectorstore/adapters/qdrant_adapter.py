@@ -4,14 +4,14 @@ Vector store adapter implementations.
 All adapters implement BaseVectorStoreAdapter from shared.interfaces.vectorstore.
 """
 
-from typing import Dict, List, Optional
+
 from shared.interfaces.vectorstore import BaseVectorStoreAdapter
 
 
 class QdrantAdapter(BaseVectorStoreAdapter):
     """Qdrant vector database adapter."""
 
-    def __init__(self, host: str, port: int, api_key: Optional[str] = None):
+    def __init__(self, host: str, port: int, api_key: str | None = None):
         self._host = host
         self._port = port
         self._api_key = api_key
@@ -22,20 +22,20 @@ class QdrantAdapter(BaseVectorStoreAdapter):
         return True
 
     async def upsert(
-        self, collection: str, ids: List[str],
-        vectors: List[List[float]], payloads: Optional[List[Dict]] = None,
+        self, collection: str, ids: list[str],
+        vectors: list[list[float]], payloads: list[dict] | None = None,
     ) -> bool:
         # TODO: Implement Qdrant upsert
         return True
 
     async def search(
-        self, collection: str, query_vector: List[float],
-        top_k: int = 10, filters: Optional[Dict] = None,
-    ) -> List[Dict]:
+        self, collection: str, query_vector: list[float],
+        top_k: int = 10, filters: dict | None = None,
+    ) -> list[dict]:
         # TODO: Implement Qdrant search
         return []
 
-    async def delete(self, collection: str, ids: List[str]) -> bool:
+    async def delete(self, collection: str, ids: list[str]) -> bool:
         # TODO: Implement Qdrant delete
         return True
 
@@ -47,16 +47,16 @@ class PineconeAdapter(BaseVectorStoreAdapter):
         raise NotImplementedError
 
     async def upsert(
-        self, collection: str, ids: List[str],
-        vectors: List[List[float]], payloads: Optional[List[Dict]] = None,
+        self, collection: str, ids: list[str],
+        vectors: list[list[float]], payloads: list[dict] | None = None,
     ) -> bool:
         raise NotImplementedError
 
     async def search(
-        self, collection: str, query_vector: List[float],
-        top_k: int = 10, filters: Optional[Dict] = None,
-    ) -> List[Dict]:
+        self, collection: str, query_vector: list[float],
+        top_k: int = 10, filters: dict | None = None,
+    ) -> list[dict]:
         raise NotImplementedError
 
-    async def delete(self, collection: str, ids: List[str]) -> bool:
+    async def delete(self, collection: str, ids: list[str]) -> bool:
         raise NotImplementedError

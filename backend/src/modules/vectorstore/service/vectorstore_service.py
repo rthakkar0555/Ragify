@@ -2,7 +2,7 @@
 Vector store service — abstract interface to vector databases.
 """
 
-from typing import Dict, List, Optional
+
 from core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -21,9 +21,9 @@ class VectorStoreService:
     async def upsert(
         self,
         collection: str,
-        ids: List[str],
-        vectors: List[List[float]],
-        payloads: Optional[List[Dict]] = None,
+        ids: list[str],
+        vectors: list[list[float]],
+        payloads: list[dict] | None = None,
     ) -> bool:
         """Upsert vectors into a collection."""
         logger.info("upserting_vectors", collection=collection, count=len(ids))
@@ -32,13 +32,13 @@ class VectorStoreService:
     async def search(
         self,
         collection: str,
-        query_vector: List[float],
+        query_vector: list[float],
         top_k: int = 10,
-        filters: Optional[Dict] = None,
-    ) -> List[Dict]:
+        filters: dict | None = None,
+    ) -> list[dict]:
         """Search for nearest neighbors."""
         return await self._adapter.search(collection, query_vector, top_k, filters)
 
-    async def delete(self, collection: str, ids: List[str]) -> bool:
+    async def delete(self, collection: str, ids: list[str]) -> bool:
         """Delete vectors by ID."""
         return await self._adapter.delete(collection, ids)

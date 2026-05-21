@@ -6,9 +6,10 @@ Events are dispatched in-process now but can be replaced with a message
 broker (RabbitMQ, Kafka) for microservice migration.
 """
 
-from typing import Any, Callable, Dict, List
+from collections.abc import Callable
+from typing import Any
 
-_subscribers: Dict[str, List[Callable]] = {}
+_subscribers: dict[str, list[Callable]] = {}
 
 
 def subscribe(event_type: str, handler: Callable) -> None:

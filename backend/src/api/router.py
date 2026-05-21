@@ -4,10 +4,10 @@ API Router — Aggregates all module endpoint routers.
 
 from fastapi import APIRouter
 
-from modules.ingestion.api.routes import router as ingestion_router
-from modules.retrieval.api.routes import router as retrieval_router
-from modules.query.api.routes import router as query_router
 from modules.auth.api.routes import router as auth_router
+from modules.ingestion.api.routes import router as ingestion_router
+from modules.query.api.routes import router as query_router
+from modules.retrieval.api.routes import router as retrieval_router
 
 router = APIRouter()
 

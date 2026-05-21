@@ -2,7 +2,8 @@
 Reusable pagination utilities.
 """
 
-from typing import Generic, List, TypeVar
+from typing import TypeVar
+
 from pydantic import BaseModel, Field
 
 from shared.constants import DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE
@@ -20,7 +21,7 @@ class PaginationParams(BaseModel):
         return (self.page - 1) * self.page_size
 
 
-def paginate(items: List, total: int, params: PaginationParams) -> dict:
+def paginate(items: list, total: int, params: PaginationParams) -> dict:
     """Build a paginated response dict."""
     return {
         "items": items,

@@ -5,7 +5,7 @@ Uses Pydantic Settings for type-safe environment variable parsing
 with support for .env files and environment-specific overrides.
 """
 
-from typing import List, Optional
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 
     # --- API ---
     API_V1_PREFIX: str = "/api/v1"
-    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: list[str] = ["http://localhost:3000"]
 
     # --- Auth ---
     SECRET_KEY: str = "change-me-in-production"
@@ -48,25 +48,25 @@ class Settings(BaseSettings):
     # --- Vector Database ---
     QDRANT_HOST: str = "localhost"
     QDRANT_PORT: int = 6333
-    QDRANT_API_KEY: Optional[str] = None
+    QDRANT_API_KEY: str | None = None
     QDRANT_GRPC_PORT: int = 6334
 
     # --- AI / Embeddings ---
-    OPENAI_API_KEY: Optional[str] = None
+    OPENAI_API_KEY: str | None = None
     DEFAULT_EMBEDDING_MODEL: str = "text-embedding-3-small"
     DEFAULT_EMBEDDING_DIMENSION: int = 1536
 
     # --- Storage ---
     STORAGE_BACKEND: str = "local"  # local | s3
     LOCAL_STORAGE_PATH: str = "./storage"
-    S3_BUCKET: Optional[str] = None
-    S3_REGION: Optional[str] = None
-    AWS_ACCESS_KEY_ID: Optional[str] = None
-    AWS_SECRET_ACCESS_KEY: Optional[str] = None
+    S3_BUCKET: str | None = None
+    S3_REGION: str | None = None
+    AWS_ACCESS_KEY_ID: str | None = None
+    AWS_SECRET_ACCESS_KEY: str | None = None
 
     # --- Observability ---
-    SENTRY_DSN: Optional[str] = None
-    OTEL_EXPORTER_ENDPOINT: Optional[str] = None
+    SENTRY_DSN: str | None = None
+    OTEL_EXPORTER_ENDPOINT: str | None = None
 
 
 settings = Settings()

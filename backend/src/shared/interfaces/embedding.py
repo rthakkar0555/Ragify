@@ -6,14 +6,13 @@ this interface. Consumed by the embedding module and retrieval pipeline.
 """
 
 from abc import ABC, abstractmethod
-from typing import List
 
 
 class BaseEmbeddingProvider(ABC):
     """Abstract base for embedding providers."""
 
     @abstractmethod
-    async def embed(self, texts: List[str]) -> List[List[float]]:
+    async def embed(self, texts: list[str]) -> list[list[float]]:
         """Generate embeddings for a batch of texts."""
         ...
 

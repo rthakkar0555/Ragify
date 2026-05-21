@@ -2,7 +2,7 @@
 FastAPI dependency injection — auth and database session providers.
 """
 
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 from fastapi import Depends, HTTPException, Security, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer

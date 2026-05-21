@@ -6,6 +6,7 @@ suitable for production log aggregation systems.
 """
 
 import logging
+
 import structlog
 
 from core.config import settings

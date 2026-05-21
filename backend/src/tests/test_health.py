@@ -9,6 +9,7 @@ async def test_health_check(client: AsyncClient):
     assert response.status_code == 200
     assert response.json() == {"status": "healthy", "service": "ragify-api"}
 
+
 @pytest.mark.asyncio
 async def test_readiness_check(client: AsyncClient):
     """Test that the readiness check returns 200 and ready status."""

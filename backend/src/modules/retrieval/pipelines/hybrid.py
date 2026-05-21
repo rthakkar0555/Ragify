@@ -19,7 +19,7 @@ async def hybrid_retrieve(
 ) -> List[Dict]:
     """
     Execute hybrid retrieval: vector search + keyword search, then merge.
-    
+
     Reciprocal Rank Fusion (RRF) is used to combine result lists.
     """
     # 1. Embed query
@@ -35,7 +35,6 @@ async def hybrid_retrieve(
 
     # 3. Keyword search (BM25)
     # TODO: Implement BM25/full-text search via PostgreSQL or Elasticsearch
-    keyword_results = []
 
     # 4. Merge using Reciprocal Rank Fusion
     # TODO: Implement RRF scoring

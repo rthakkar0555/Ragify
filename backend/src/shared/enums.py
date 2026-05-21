@@ -8,7 +8,7 @@ and provide a single source of truth for status/type values.
 import enum
 
 
-class DocumentStatus(str, enum.Enum):
+class DocumentStatus(enum.StrEnum):
     PENDING = "pending"
     PROCESSING = "processing"
     CHUNKED = "chunked"
@@ -17,7 +17,7 @@ class DocumentStatus(str, enum.Enum):
     FAILED = "failed"
 
 
-class DocumentType(str, enum.Enum):
+class DocumentType(enum.StrEnum):
     PDF = "pdf"
     TEXT = "text"
     MARKDOWN = "markdown"

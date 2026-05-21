@@ -29,11 +29,13 @@ async def get_current_user(
                 detail="Invalid authentication token",
             )
         return {"user_id": user_id}
-    except Exception:
+    except HTTPException:
+        raise
+    except Exception as err:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
-        )
+        ) from err
 
 
 async def get_current_active_user(
